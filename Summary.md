@@ -1,72 +1,74 @@
-# Bus / Train Ticket Booking System
 
-## 1. Project Introduction
+# Bus/Train Ticket Booking System
 
-The Bus / Train Ticket Booking System is a simple Python project. It helps users book tickets, check available seats, view passenger details, and cancel tickets.
+## 1. Introduction
 
-This project is made using basic Python concepts. It is easy to use and understand.
+The Bus/Train Ticket Booking System is a simple Python project that allows passengers to view available seats, book tickets, view their bookings, and cancel tickets.
 
-## 2. Main Features
+The system contains 10 seats, numbered from 1 to 10. The ticket price is Rs. 500 per seat.
 
-- View available seats.
-- Book a ticket by entering a passenger name and seat number.
-- View all booked tickets.
-- Cancel a booked ticket.
-- Get an 80% refund after cancellation.
-- Show a message when all seats are booked.
+## 2. Objectives
 
-## 3. Technologies Used
+- To display available seats.
+- To book a seat for a passenger.
+- To view booking details.
+- To cancel an existing booking.
+- To prevent double booking.
+- To validate seat numbers.
+- To calculate refunds after cancellation.
 
-- **Programming Language:** Python
-- **Editor:** VS Code
-- **Concepts:** Variables, Lists, Dictionaries, Functions, Loops, If-Else, and Exception Handling.
+## 3. Python Concepts Used
 
-## 4. How the Project Works
+| Concept | Description |
+|---|---|
+| Lists | Store available seat numbers. |
+| Dictionaries | Store passenger and booking details. |
+| Functions | Perform different booking operations. |
+| Loops | Display the menu and repeat operations. |
+| Conditional Statements | Check seat availability and validate input. |
 
-1. Run the Python program.
-2. Select an option from the main menu.
-3. Check available seats.
-4. Enter passenger details to book a ticket.
-5. View booking details whenever needed.
-6. Cancel a ticket if required.
-7. Exit the program when finished.
+## 4. Main Features
 
-## 5. Project Screenshots
+### 1. View Seats
+Displays all available seats.
 
-### Screenshot 1: Main Menu
+### 2. Book a Seat
+Allows passengers to select a seat and enter their name.
 
-This screenshot shows the main menu of the project.
+### 3. View Bookings
+Displays the booking details of passengers.
 
-![Main Menu Screenshot](screenshots/image1.png)
+### 4. Cancel a Booking
+Allows passengers to cancel their bookings and receive a refund.
 
-### Screenshot 2: Available Seats
+## 5. Ticket Price and Refund Details
 
-This screenshot shows the available and booked seats.
+- Total Seats: 10
+- Ticket Price: Rs. 500
+- Cancellation Refund: 80%
+- Refund Amount: Rs. 400
+- Non-refundable Amount: Rs. 100
 
-![Available Seats Screenshot](screenshots/image2.png)
+## 6. Terminal Output Screenshots
 
-### Screenshot 3: Ticket Booking
+### Screenshot 1: View Available Seats
 
-This screenshot shows a successful ticket booking.
+![Available Seats](images/available-seats.png)
 
-![Ticket Booking Screenshot](screenshots/image3.png)
+### Screenshot 2: Successful Seat Booking
 
-### Screenshot 4: Ticket Cancellation
+![Seat Booking](images/seat-booking.png)
 
-This screenshot shows ticket cancellation and refund details.
+### Screenshot 3: View Booking Details
 
-![Ticket Cancellation Screenshot](screenshots/image4.png)
+![Booking Details](images/booking-details.png)
 
-## 6. Conclusion
+### Screenshot 4: Cancel Booking and Refund
 
-This project helped me understand the basics of Python programming. I learned how to use lists, dictionaries, functions, loops, and conditions in a real-life example.
+![Cancellation and Refund](images/cancellation-refund.png)
 
-It is a beginner-friendly project that demonstrates a simple ticket booking system.
+## 7. Conclusion
 
----
+This project helped me understand the basic concepts of Python programming, including lists, dictionaries, functions, loops, and conditional statements.
 
-**Project Name:** Bus / Train Ticket Booking System
-
-**Project Number:** PS No. 36
-
-**Language:** Python
+It also helped me learn how to create a simple menu-driven ticket booking system that manages seats, passenger details, bookings, and cancellations.
