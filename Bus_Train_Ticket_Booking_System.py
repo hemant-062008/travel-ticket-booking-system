@@ -2,156 +2,117 @@
 # Bus / Train Ticket Booking System
 # Project PS No. 36
 
-# Total seats and ticket price
 total_seats = 10
 ticket_price = 500
 
-# List of available seats
-available_seats = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# Store available seats in a list
+available_seats = list(range(1, total_seats + 1))
 
-# Dictionary to store passenger details
+# Store passenger details in a dictionary
 bookings = {}
 
 
-# Function to display all seats
+# Function 1: View Available Seats
 def view_seats():
-    print("\n========== SEAT DETAILS ==========")
-
-    for seat in range(1, total_seats + 1):
-
-        if seat in bookings:
-            print("Seat", seat, "- Booked")
-        else:
-            print("Seat", seat, "- Available")
-
-    print("\nAvailable Seats:", len(available_seats))
+    if available_seats:
+        print("Available:", ", ".join(map(str, available_seats)))
+    else:
+        print("No seats available. Bus is full.")
 
 
-# Function to book a ticket
-def book_ticket():
-    print("\n========== BOOK TICKET ==========")
+# Function 2: Book a Seat
+def book_seat():
+    try:
+        seat = int(input("Seat: "))
+    except ValueError:
+        print("Invalid seat. Choose a seat from 1 to 10.")
+        return
+
+    if seat < 1 or seat > 10:
+        print("Invalid seat. Choose a seat from 1 to 10.")
+        return
+
+    if seat not in available_seats:
+        print(f"Seat {seat} is already booked.")
+        return
+
+    passenger = input("Passenger: ").strip()
+
+    if not passenger:
+        print("Invalid passenger name.")
+        return
+
+    bookings[seat] = passenger
+    available_seats.remove(seat)
+
+    print(f"Seat {seat} booked for {passenger}. Fare: {ticket_price}")
+    print(f"Seats left: {len(available_seats)}")
 
     if len(available_seats) == 0:
-        print("Sorry! All seats are booked.")
-        return
-
-    try:
-        seat = int(input("Enter seat number (1-10): "))
-
-        if seat < 1 or seat > total_seats:
-            print("Invalid seat number.")
-
-        elif seat not in available_seats:
-            print("Sorry! This seat is already booked.")
-
-        else:
-            name = input("Enter passenger name: ").strip()
-
-            if name == "":
-                print("Passenger name cannot be empty.")
-                return
-
-            # Store passenger information
-            bookings[seat] = {
-                "name": name,
-                "fare": ticket_price
-            }
-
-            # Remove booked seat from available seats
-            available_seats.remove(seat)
-
-            print("\nTicket booked successfully!")
-            print("Passenger Name:", name)
-            print("Seat Number:", seat)
-            print("Ticket Price: Rs.", ticket_price)
-
-            if len(available_seats) == 0:
-                print("Bus is now full.")
+        print("Bus is now full.")
 
 
-    except ValueError:
-        print("Please enter a valid number.")
-
-
-# Function to display all bookings
+# Function 3: View All Bookings
 def view_bookings():
-    print("\n========== ALL BOOKINGS ==========")
+    if bookings:
+        print("Booking Details:")
+        for seat, passenger in sorted(bookings.items()):
+            print(f"Seat {seat}: {passenger}")
+    else:
+        print("No bookings found.")
 
-    if len(bookings) == 0:
-        print("No bookings available.")
+
+# Function 4: Cancel a Booking
+def cancel_booking():
+    try:
+        seat = int(input("Seat: "))
+    except ValueError:
+        print("Invalid seat number.")
         return
 
-    for seat, passenger in bookings.items():
+    if seat not in bookings:
+        print("No booking found for this seat.")
+        return
 
-        print("\nPassenger Name:", passenger["name"])
-        print("Seat Number:", seat)
-        print("Ticket Price: Rs.", passenger["fare"])
-        print("-----------------------------")
+    passenger = bookings.pop(seat)
+    refund = int(ticket_price * 0.80)
 
+    available_seats.append(seat)
+    available_seats.sort()
 
-# Function to cancel a ticket
-def cancel_booking():
-    print("\n========== CANCEL TICKET ==========")
-
-    try:
-        seat = int(input("Enter seat number to cancel: "))
-
-        if seat in bookings:
-
-            passenger = bookings[seat]
-
-            # Calculate 80 percent refund
-            refund = passenger["fare"] * 80 // 100
-
-            print("\nTicket cancelled successfully!")
-            print("Passenger Name:", passenger["name"])
-            print("Seat Number:", seat)
-            print("Refund Amount: Rs.", refund)
-
-            # Delete booking details
-            del bookings[seat]
-
-            # Make seat available again
-            available_seats.append(seat)
-            available_seats.sort()
-
-        else:
-            print("This seat is not booked.")
-
-    except ValueError:
-        print("Please enter a valid seat number.")
+    print(f"Booking for seat {seat} cancelled. Refund: {refund}")
 
 
-# Main program
+# Main Menu
 while True:
-
-    print("\n================================")
-    print(" BUS / TRAIN TICKET BOOKING SYSTEM")
-    print("================================")
-    print("1. View Available Seats")
-    print("2. Book Ticket")
-    print("3. View All Bookings")
-    print("4. Cancel Ticket")
+    print("\n===== BUS / TRAIN TICKET BOOKING SYSTEM =====")
+    print("1. View seats")
+    print("2. Book")
+    print("3. Bookings")
+    print("4. Cancel")
     print("5. Exit")
 
-    choice = input("\nEnter your choice: ")
+    try:
+        choice = int(input("Enter menu option: "))
+    except ValueError:
+        print("Invalid menu option. Try again.")
+        continue
 
-    if choice == "1":
+    if choice == 1:
         view_seats()
 
-    elif choice == "2":
-        book_ticket()
+    elif choice == 2:
+        book_seat()
 
-    elif choice == "3":
+    elif choice == 3:
         view_bookings()
 
-    elif choice == "4":
+    elif choice == 4:
         cancel_booking()
 
-    elif choice == "5":
-        print("\nThank you for using our Booking System!")
-        print("Have a nice journey!")
+    elif choice == 5:
+        print("Thank you for using the booking system!")
         break
 
     else:
-        print("Invalid choice! Please select 1 to 5.")
+        print("Invalid menu option. Choose 1 to 5.")
